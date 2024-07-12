@@ -23,7 +23,7 @@ ActiveAdmin.register Music do
       row :price
       row :file do
         if music.file.attached?
-          link_to music.file.filename, rails_blob_path(music.file, disposition: "attachment")
+          link_to music.file.filename.to_s, rails_blob_path(music.file, disposition: "attachment")
         end
       end
       row :description
@@ -42,6 +42,11 @@ ActiveAdmin.register Music do
       music.genres.map(&:name).join(", ")
     end
     column :price
+    column :file do |music|
+      if music.file.attached?
+        link_to music.file.filename.to_s, rails_blob_path(music.file, disposition: "attachment")
+      end
+    end
     column :created_at
     actions
   end

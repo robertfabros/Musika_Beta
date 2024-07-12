@@ -14,31 +14,1035 @@
  *= require_self
  */
 /* app/assets/stylesheets/application.css */
-.navbar {
-    text-align: center;
-    background-color: #333;
-    padding: 1rem;
-  }
-  
-  .navbar-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-  }
-  
-  .navbar-item {
-    display: inline;
-    margin: 0 1rem;
-  }
-  
-  .navbar-item a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .navbar-item a:hover {
-    text-decoration: underline;
-  }
-  
+/* Name: Robert Fabros
+Project: Musika
+Ruby on Rails Project */
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #191B34;
+  background-image: url('bg-musika.jpg');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-family: "Inter-Regular", Helvetica;
+}
+
+#wrapper {
+  width: 100%;
+}
+
+header {
+  width: 1100px;
+  margin: auto;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  padding: 5px 20px;
+}
+.header-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-input-top {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+}
+nav {
+  display: flex;
+}
+ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+header nav ul a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav ul a:hover {
+  text-decoration: underline;
+}
+
+li {
+  margin-right: 15px;
+}
+
+main {
+  padding: 15px 0px 30px 0px;
+  width: 1100px;
+  margin: auto;
+}
+
+#topheader {
+  width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0px;
+}
+
+.logo {
+  flex: 1;
+}
+
+.welcome-text {
+  flex: 1;
+  text-align: right;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+}
+
+main h1.adminpage {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 60px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+.login-header h2 {
+  color: #333;
+}
+
+.admintext2 {
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 26px;
+  margin: 20px 0px;
+}
+
+/* Form */
+#bandAdmin input[type=text],
+#bandAdmin textarea,
+#bandAdmin input[type=file] {
+  display: block;
+  width: 90%;
+  /* Adjusted width */
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 12pt;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 300;
+}
+
+.bandForm {
+  margin: 20px 0px;
+}
+
+#bandAdmin textarea {
+  height: 100px;
+}
+#bandAdmin .checkbox-label {
+  color: #c6750c;
+  margin-top: 10px;
+}
+/* CSS for checkbox */
+#bandAdmin #remove_image {
+  transform: scale(1.7); /* Increase the size of the checkbox */
+  margin-right: 10px; /* Add some spacing between the checkbox and the label */
+}
+/* CSS for checkbox and label */
+#bandright input[type=checkbox] {
+  margin-top: 18px; /* Move the checkbox down by 10px */
+}
+
+#bandright label {
+  margin-top: 18px; /* Move the label down by 10px */
+  color: #fff;
+}
+
+
+#bandAdmin {
+  margin: 60px 0px;
+  color: #fff;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+}
+
+#bandAdmin a {
+  color: #c6750c;
+  font-weight: bold;
+}
+#bandAdmin button {
+  background-color: #c6750c;
+  border-radius: 40px;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+}
+
+#bandwrapper {
+  width: 900px;
+  display: flex;
+  margin: 20px auto;
+}
+
+#bandleft {
+  width: 30%;
+  display: inline-block;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: 26px;
+  margin-top: 10px;
+}
+
+#bandright {
+  width: 70%;
+  display: inline-block;
+  /* Added display property */
+  vertical-align: top;
+  /* Aligns the right column to the top */
+}
+
+#bandleft label {
+  width: 100%;
+  /* Adjusted width */
+  display: block;
+  margin-bottom: 10px;
+  /* Added margin for spacing */
+}
+
+.adminbutton {
+  margin: auto;
+  width: 200px;
+}
+
+/* Footer */
+footer {
+  width: 1100px;
+  margin: 0px auto 20px auto;
+  text-align: center;
+}
+
+footer nav {
+  text-align: center;
+}
+
+footer nav ul {
+  display: flex;
+  justify-content: center;
+  /* Center items horizontally */
+  margin: 0px auto 10px auto;
+  width: 70%;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #c4c6df;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center;
+}
+
+footer nav ul a {
+  color: #c4c6df;
+  text-decoration: none;
+}
+
+footer nav ul a:hover {
+  color: #fff;
+}
+
+footer p {
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #c4c6df;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+footer span {
+  font-weight: 700;
+  color: #c6750c;
+}
+
+/* LOGIN Page */
+.login-box {
+  width: 300px;
+  margin: 50px auto;
+  padding: 50px 70px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Inter-Regular", Helvetica;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-header img {
+  width: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.login-header h2 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14pt;
+}
+
+.form-group input {
+  width: 90%;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 12pt;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.login-button {
+  background-color: #c6750c;
+  border-radius: 40px;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  /* Ensures the button respects text-align: center */
+}
+
+.login-button:hover {
+  background-color: #b5630b;
+}
+
+.error-message {
+  font-family: 'Inter', sans-serif;
+  color: white;
+  font-size: 14pt;
+  text-align: center;
+  background-color: #E1445C;
+  padding: 10px;
+  border-radius: 10px; /* Adding rounded corners */
+}
+
+.registerp {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.registerp p a {
+  color: #c6750c;
+}
+
+.registerp p a:hover {
+  color: #fff;
+}
+
+/* Registration */
+
+.success-message {
+  color: white;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 16pt;
+}
+
+/* Table */
+
+/* Set all text to Inter */
+table {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  width: 100%;
+  margin: 20px auto;
+}
+
+/* Set th text to bold and size 17pt and align left */
+th {
+  font-weight: bold;
+  font-size: 17px;
+  text-align: left;
+  padding: 2px 15px;
+}
+/* Set all text inside tr to normal weight, size 15pt and align left */
+tr {
+  font-weight: normal;
+  font-size: 15px;
+  text-align: left;
+}
+td {
+  padding: 2px 15px;
+}
+main table td a {
+  color: #fff;
+  text-decoration: underline;
+}
+main table td a:hover {
+  text-decoration: none;
+}
+/* Make background of 1st row transparent */
+thead tr th {
+  background-color: transparent!important;
+}
+
+/* Add padding to the 1st column */
+th:nth-child(1),
+td:nth-child(1) {
+  padding: 15px 20px;
+}
+/* Set background color for different columns */
+td:nth-child(1), th:nth-child(1) {
+  background-color: #C6750C; /* 1st column */
+}
+
+td:nth-child(2), th:nth-child(2) {
+  background-color: #401693; /* 2nd column */
+  margin-right: 5px; /* Add 5px space between column 1 and 2 */
+}
+
+td:nth-child(3), th:nth-child(3) {
+  background-color: #401693; /* 3rd column */
+  margin-right: 5px; /* Add 5px space between column 2 and 3 */
+}
+
+td:nth-child(4), th:nth-child(4) {
+  /* No background color for the 4th column */
+}
+
+/* Make the image in the 4th column circular */
+td:nth-child(4) img {
+  display: block;
+  margin: auto;
+  border-radius: 50%; /* Apply circular border radius */
+}
+
+/* Adjust column widths */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 20%; /* 1st column */
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 55%; /* 2nd column */
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 15%; /* 3rd column */
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 5%; /* 4th column */
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 5%; /* 4th column */
+}
+.edit-icons {
+  padding: 2px 0px;
+}
+
+/* TAB */
+.admin-container {
+  display: flex;
+  width: 1100px;
+  margin: 20px auto;
+}
+.admin-sidebar {
+  flex-basis: 20%;
+  background-color: rgba(64, 22, 147, 0.8);
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  border-radius: 10px;
+}
+.admin-main {
+  flex-basis: 80%;
+  padding: 20px;
+}
+.sidebar-menu a {
+  display: block;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  background-color: #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  color: black;
+}
+/* Hide sections initially */
+.admin-section {
+  display: none;
+}
+/* Active section style */
+.active {
+  display: block;
+}
+
+/* Artist Profile Page */
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+.left-col {
+  width: 742px;
+  margin-right: 40px;
+}
+
+.right-col {
+  width: 318px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artist-image {
+  max-width: 318px;
+  border-radius: 20px;
+}
+
+.artist-description {
+  font-size: 18px;
+  color: #fff;
+  font-weight:200;
+  line-height: 24px;
+}
+
+.albums-songs-container {
+  display: flex;
+  gap: 30px;
+  font-family: 'Inter', sans-serif;
+}
+
+.albums, .songs {
+  width: 50%;
+}
+
+.albums-title, .songs-title {
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+.edit-link, .delete-button {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  margin-top: 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-link {
+  background-color: #E1445C; /* Red */
+}
+
+.delete-button {
+  background-color: #E1445C; /* Red */
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Adjust spacing between buttons */
+  margin-top: 0px;
+}
+
+
+.albums ul, .songs ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0; /* Removes default padding */
+}
+
+.albums li, .songs li {
+  list-style-type: none; /* Removes default list item styling */
+  margin-bottom: 10px; /* Adds space between rows */
+  background-color: #401693; /* Background color for albums */
+  padding: 15px 20px; /* Padding inside each row */
+  border-radius: 5px; /* Rounded corners for the rows */
+  color: #fff; /* Text color */
+}
+
+.songs li {
+  background-color: #C6750C; /* Different background color for songs */
+}
+
+/* Sort */
+.sorting-buttons {
+  display: flex;
+  justify-content: right;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}
+
+.sorting-section {
+  background-color: #E1445C;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.sorting-section img {
+  width: 12px;
+  height: auto;
+  padding: 0px 5px;
+}
+
+.sorting-section a {
+  display: inline-block;
+  max-width: 12px;
+}
+.sorting-summary {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+/* Search */
+/* Override default form input styles */
+form input[type=text], 
+form input[type=password], 
+form input[type=email], 
+form input[type=number], 
+form input[type=url], 
+form input[type=tel], 
+form input[type=date], 
+form input[type=time], 
+form textarea {
+  width: 60% !important;
+  border: 1px solid #c9d0d6 !important;
+  border-radius: 6px !important;
+  font-size: 1.2em !important;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  outline: none !important;
+  padding: 12px 20px !important;
+}
+
+/* Override default Rails styles */
+a.button, a.button:link, a.button:visited, input[type=submit], input[type=button], button {
+  border-radius: 6px !important;
+  display: inline-block !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  line-height: 12px !important;
+  margin-right: 10px !important;
+  padding: 15px 30px !important;
+  text-decoration: none !important;
+  background-color: #E1445C !important;
+  background-image: none !important;
+  text-shadow: none !important;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+  color: white !important;
+  cursor: pointer !important;
+}
+
+.search-container {
+  text-align: center;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 60%;
+  margin: auto;
+}
+
+.search-container h1 {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 26px;
+  letter-spacing: 0;
+  line-height: normal;
+  padding: 0;
+  margin: 20px 0px 10px 0px;
+}
+
+.search-input {
+  width: 40%;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-category {
+  width: 15%;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #E1445C;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-results-container {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.search-results-container h2 {
+  font-size: 24pt;
+}
+
+.result-row a {
+  font-size: 16pt;
+  color: #c6750c;
+  font-weight: 700;
+}
+
+.result-row a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.results-row-container {
+  margin-top: 20px;
+}
+
+.result-row {
+  padding: 10px 0;
+}
+
+.result-row:last-child {
+  border-bottom: none;
+}
+
+.result-row p {
+  margin-top: 5px;
+}
+
+
+
+.pagination {
+  text-align: center; /* Center the pagination container */
+  margin-top: 20px; /* Add some space above the pagination links */
+}
+
+.pagination a, .pagination span {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 4px;
+  border: 1px solid #ddd;
+  color: #c6750c;
+  text-decoration: none;
+}
+
+.pagination span.active {
+  background-color: #5559de;
+  color: #fff;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.live-search {
+  max-width: 400px;
+  width: 100%; /* This makes it responsive, adjusting to the width of its parent container */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for better separation from the page content */
+  z-index: 100; /* Ensure it's above other content */
+  position: absolute; /* Position it below the search input */
+  background: #fff;
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee; /* Optional: adds a light separator between suggestions */
+}
+
+.suggestion:last-child {
+  border-bottom: none;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  object-fit: cover; /* Ensure the images cover the area nicely */
+}
+
+.artist-name, .thumbnail-link {
+  color: #333; /* Adjust the color as needed */
+  text-decoration: none; /* Removes underline from links */
+}
+
+.artist-name:hover, .thumbnail-link:hover {
+  text-decoration: underline; /* Adds an underline on hover for better UX */
+}
+
+/* Featured Artists - Index.php */
+main h1.featured {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+  padding: 0;
+  margin: 40px 0px;
+}
+
+/* Comments */
+.comments-section {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 12pt;
+  margin-bottom: 30px;
+}
+.comment {
+  margin: 20px 0px 20px 0px;
+  display: flex;
+}
+h3.commentheader {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14pt;
+}
+p.commentp {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 12pt; 
+}
+p.commentp a {
+  color: #c6750c;
+}
+.comment-text {
+  flex-basis: 85%;
+  background-color: #4A4E69;
+  padding: 22px 34px;
+  border-radius: 10px;
+}
+.username {
+  flex-basis: 15%;
+  margin-top: 10px;
+  text-align: right;
+  padding-right: 20px;
+}
+.comment-form input, .comment-form textarea, .comment-form button {
+  font-family: 'Inter', sans-serif;
+  margin-top: 10px;
+  display: block;
+  width: 100%; /* Makes input take full width of its container */
+  padding: 10px; /* Padding inside the input and textarea */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Subtle border */
+}
+
+.comment-form button {
+  background-color: #E1445C; /* Red background */
+  color: white;
+  cursor: pointer;
+  border: none; /* No border */
+  width: 30%; /* Set width to 30% of its container */
+  margin: 20px auto; /* Top and bottom margin of 20px, auto margins on the sides to center */
+  display: block; /* Make the button a block element to allow width and margin auto to work */
+}
+.comment-container {
+  max-width: 60%; /* Maximum width of the container */
+  margin: 0 auto; /* Centers the container horizontally */
+  padding: 20px; /* Optional padding for aesthetics */
+}
+
+
+
+.comment-form input[type="text"] {
+  margin-bottom: 10px; /* Space between the captcha input and the textarea */
+}
+.admin-section h2 {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* Manage Users */
+
+.update_user {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.update_user h1 {
+  color: #333;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update_user form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: #E1445C;
+  color: white;
+  padding: 15px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 30%;
+  margin: auto;
+}
+
+.btn-primary:hover {
+  background-color: #c6750c;
+}
+
+/* Featured Artists */
+.artist-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.artist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px; 
+  margin-right: 20px; 
+}
+
+.artist:last-child {
+  margin-right: 0;
+}
+
+.artist a {
+  text-decoration: none;
+  color: inherit; 
+}
+
+.artist img {
+  width: 100%; 
+  height: auto; 
+  border-radius: 15px;
+}
+
+.artist p {
+  text-align: center;
+  margin-top: 8px;
+}
+
+
+
+
+
+
+
+
+
+

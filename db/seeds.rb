@@ -54,3 +54,58 @@
 # provinces.each do |province|
 #   Province.find_or_create_by(province)
 # end
+
+# This is for Seeding 100 Products using Faker
+# require 'faker'
+
+# # Ensure we have genres and artists in the database
+# genres = Genre.all
+# artists = Artist.all
+
+# if genres.empty?
+#   puts "No genres found. Please create some genres first."
+#   exit
+# end
+
+# if artists.empty?
+#   puts "No artists found. Please create some artists first."
+#   exit
+# end
+
+# # Create a directory to store sample mp3 files for testing
+# mp3_files_dir = Rails.root.join('db', 'seeds', 'mp3_files')
+# Dir.mkdir(mp3_files_dir) unless Dir.exist?(mp3_files_dir)
+
+# # Ensure there are at least 10 mp3 files
+# 10.times do |i|
+#   file_path = mp3_files_dir.join("#{i + 1}.mp3")
+#   File.write(file_path, "Sample content for MP3 file #{i + 1}") unless File.exist?(file_path)
+# end
+
+# # Seed 100 music tracks
+# 100.times do
+#   music = Music.new(
+#     artist: artists.sample,
+#     title: Faker::Music.album,
+#     price: Faker::Commerce.price(range: 0..10.0),
+#     description: Faker::Lorem.paragraph
+#   )
+
+#   # Attach an MP3 file
+#   file_path = mp3_files_dir.join("#{rand(1..10)}.mp3")
+#   music.file.attach(io: File.open(file_path), filename: "#{rand(1..10)}.mp3", content_type: 'audio/mpeg')
+
+#   # Save the music record first before adding genres
+#   if music.save
+#     # Assign random genres after saving the music record
+#     selected_genres = genres.sample(rand(1..3))
+#     selected_genres.each do |genre|
+#       MusicGenre.create(music: music, genre: genre)
+#     end
+#     puts "Created music: #{music.title} with genres: #{selected_genres.map(&:name).join(', ')}"
+#   else
+#     puts "Failed to create music: #{music.errors.full_messages.join(', ')}"
+#   end
+# end
+
+# puts "Seeded 100 music tracks"

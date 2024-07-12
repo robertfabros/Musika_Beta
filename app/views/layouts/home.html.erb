@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Musika</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <div class="header-flex-container">
+        <nav>
+          <ul>
+            <li><%= link_to 'Home', root_path %></li>
+            <li><%= link_to 'Artists', artists_path %></li>
+            <li><%= link_to 'Genres', genres_path %></li>
+            <li><%= link_to 'Music', music_index_path %></li>
+            <li><%= link_to 'About', about_path %></li>
+            <li><%= link_to 'Contact', contact_path %></li>
+            <li><%= link_to 'Admin', admin_root_path %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div id="topheader">
+      <div class="logo">
+        <%= image_tag 'musika-logo.svg', alt: 'Musika Logo', width: '222' %>
+      </div>
+      <div class="welcome-text">
+        Welcome Visitor!
+      </div>
+    </div>
+    <main>
+      <div class="search-container">
+        <h1>Search for your favourite artists or country of artist</h1>
+        <%= form_with(url: search_path, method: :get, local: true) do |form| %>
+          <%= form.text_field :query, placeholder: "Search...", class: "search-input" %>
+          <%= form.select :category, options_for_select([['All', ''], ['Music', 'music'], ['Artists', 'artists'], ['Genres', 'genres'], ['Comments', 'comments']]), {}, class: "search-category" %>
+          <%= form.submit "Search", class: "search-button" %>
+        <% end %>
+        <div id="live-search-results" class="live-search"></div>
+      </div>
+
+
+      <h1 class="featured">Featured Artists</h1>
+      <div class="artist-row">
+        <% @featured_artists.each do |artist| %>
+          <div class="artist">
+            <%= link_to artist_path(artist) do %>
+              <%= image_tag url_for(artist.profile_picture), alt: "Photo of #{artist.user.name}", style: 'width: 218px; height: auto;' %>
+              <p><%= artist.user.name %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Artists', artists_path %></li>
+        </ul>
+      </nav>
+      <p><span>Musika</span> - A Music Content Management System for Music Artists. Designed and developed by Robert Fabros.</p>
+    </footer>
+  </div>
+</body>
+</html>

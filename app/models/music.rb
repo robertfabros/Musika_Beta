@@ -9,6 +9,7 @@ class Music < ApplicationRecord
   has_one_attached :file
 
   validates :title, presence: true
+  validates :artist_id, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :file, presence: true
   validates :description, presence: true
