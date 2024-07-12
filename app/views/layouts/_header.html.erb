@@ -1,0 +1,27 @@
+<div id="wrapper">
+    <div id="wrap-header">
+    <header>
+      <div class="header-flex-container">
+        <nav>
+          <ul>
+            <li><%= link_to 'Home', root_path %></li>
+            <li><%= link_to 'Artists', artists_path %></li>
+            <li><%= link_to 'Genres', genres_path %></li>
+            <li><%= link_to 'Music', music_index_path %></li>
+            <li><%= link_to 'About', about_path %></li>
+            <li><%= link_to 'Contact', contact_path %></li>
+            <li><%= link_to 'Admin', admin_root_path %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    </div>
+    <div id="topheader">
+      <div class="logo">
+        <%= image_tag 'musika-logo.svg', alt: 'Musika Logo', width: '222' %>
+      </div>
+      <div class="welcome-text">
+        Welcome Visitor!
+      </div>
+    </div>
+    <main>

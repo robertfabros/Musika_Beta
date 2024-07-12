@@ -1,19 +1,27 @@
+# app/controllers/search_controller.rb
 class SearchController < ApplicationController
   def index
-    @query = params[:query]
+    @query = params[:query].to_s.downcase
     @category = params[:category]
 
-    @results = case @category
-               when 'music'
-                 Music.where("title ILIKE ? OR description ILIKE ?", "%#{@query}%", "%#{@query}%")
-               when 'artists'
-                 Artist.joins(:user).where("users.name ILIKE ? OR bio ILIKE ?", "%#{@query}%", "%#{@query}%")
-               when 'genres'
-                 Genre.where("name ILIKE ?", "%#{@query}%")
-               when 'comments'
-                 Comment.where("body ILIKE ?", "%#{@query}%")
-               else
-                 Music.where("title ILIKE ? OR description ILIKE ?", "%#{@query}%", "%#{@query}%")
-               end
+    if @query.blank?
+      @results = []
+    else
+      @results = case @category
+                 when 'music'
+                   Music.where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", "%#{@query}%", "%#{@query}%")
+                 when 'artists'
+                   Artist.joins(:user).where("LOWER(users.name) LIKE ? OR LOWER(artists.bio) LIKE ?", "%#{@query}%", "%#{@query}%")
+                 when 'genres'
+                   Genre.where("LOWER(name) LIKE ?", "%#{@query}%")
+                 when 'comments'
+                   defined?(Comment) ? Comment.where("LOWER(body) LIKE ?", "%#{@query}%") : []
+                 else
+                   Music.where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", "%#{@query}%", "%#{@query}%") +
+                   Artist.joins(:user).where("LOWER(users.name) LIKE ? OR LOWER(artists.bio) LIKE ?", "%#{@query}%", "%#{@query}%") +
+                   Genre.where("LOWER(name) LIKE ?", "%#{@query}%") +
+                   (defined?(Comment) ? Comment.where("LOWER(body) LIKE ?", "%#{@query}%") : [])
+                 end
+    end
   end
 end

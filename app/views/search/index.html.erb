@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Musika - Search Results</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div id="wrapper">
-    <header>
-      <h1>Musika</h1>
-      <nav>
-        <ul>
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'Artists', artists_path %></li>
-          <li><%= link_to 'Genres', genres_path %></li>
-          <li><%= link_to 'Music', music_index_path %></li>
-          <li><%= link_to 'Comments', comments_path %></li>
-          <li><%= link_to 'About', about_path %></li>
-          <li><%= link_to 'Contact', contact_path %></li>
-          <li><%= link_to 'Admin', admin_root_path %></li>
-        </ul>
-      </nav>
-    </header>
+<!-- app/views/search/index.html.erb -->
 
     <h2>Search Results</h2>
 
@@ -48,9 +24,3 @@
       <p>No results found.</p>
     <% end %>
 
-    <footer>
-      <p>&copy; 2024 Musika. All rights reserved.</p>
-    </footer>
-  </div>
-</body>
-</html>

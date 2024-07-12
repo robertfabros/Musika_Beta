@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
   get 'search', to: 'search#index'
-  # Custom routes for About and Contact pages
   get 'about', to: 'pages#show', slug: 'about', as: 'about'
   get 'contact', to: 'pages#show', slug: 'contact', as: 'contact'
 
