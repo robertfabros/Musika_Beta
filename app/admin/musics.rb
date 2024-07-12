@@ -1,12 +1,11 @@
-# app/admin/musics.rb
 ActiveAdmin.register Music do
-  permit_params :artist_id, :title, :genre_id, :price, :file, :description
+  permit_params :artist_id, :title, :price, :file, :description, genre_ids: []
 
   form do |f|
     f.inputs "Music Details" do
       f.input :artist
       f.input :title
-      f.input :genre
+      f.input :genres, as: :check_boxes, collection: Genre.all
       f.input :price
       f.input :file, as: :file
       f.input :description
@@ -18,7 +17,9 @@ ActiveAdmin.register Music do
     attributes_table do
       row :artist
       row :title
-      row :genre
+      row :genres do
+        music.genres.map(&:name).join(", ")
+      end
       row :price
       row :file do
         if music.file.attached?
@@ -37,9 +38,17 @@ ActiveAdmin.register Music do
     id_column
     column :artist
     column :title
-    column :genre
+    column :genres do |music|
+      music.genres.map(&:name).join(", ")
+    end
     column :price
     column :created_at
     actions
   end
+
+  filter :artist
+  filter :title
+  filter :genres, as: :select, collection: Genre.all.map { |genre| [genre.name, genre.id] }
+  filter :price
+  filter :created_at
 end
