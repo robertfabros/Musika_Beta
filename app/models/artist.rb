@@ -7,21 +7,23 @@ class Artist < ApplicationRecord
   validates :bio, presence: true
   validates :profile_picture, presence: true
 
-  before_save :resize_profile_picture
+  after_commit :resize_profile_picture, if: :profile_picture_attached?
 
   private
 
   def resize_profile_picture
-    return unless profile_picture.attached?
-
     profile_picture.variant(resize_to_limit: [300, 300]).processed
   end
 
+  def profile_picture_attached?
+    profile_picture.attached?
+  end
+
   def self.ransackable_attributes(auth_object = nil)
-    %w[bio created_at id updated_at user_id]
+    ["bio", "created_at", "id", "id_value", "profile_picture", "updated_at", "user_id"]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[music user]
+    ["music", "profile_picture_attachment", "profile_picture_blob", "user"]
   end
 end

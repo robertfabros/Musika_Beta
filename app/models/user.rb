@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates :role, presence: true
   validates :address, presence: true
 
+  enum role: { customer: 'Customer', artist: 'Artist' }
+
   def self.ransackable_attributes(auth_object = nil)
     %w[address created_at email id name province_id role updated_at]
   end
