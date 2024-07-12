@@ -11,4 +11,13 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
   validates :role, presence: true
   validates :address, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[address created_at email id name province_id role updated_at]
+  end
+
+  # Add this method to explicitly allowlist searchable associations
+  def self.ransackable_associations(auth_object = nil)
+    %w[artists carts orders reviews province]
+  end
 end

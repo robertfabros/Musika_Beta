@@ -1,4 +1,3 @@
-# app/models/artist.rb
 class Artist < ApplicationRecord
   belongs_to :user
   has_many :music
@@ -16,5 +15,13 @@ class Artist < ApplicationRecord
     return unless profile_picture.attached?
 
     profile_picture.variant(resize_to_limit: [300, 300]).processed
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[bio created_at id updated_at user_id]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[music user]
   end
 end
