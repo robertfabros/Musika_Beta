@@ -7,4 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+# db/seeds.rb
+Page.find_or_create_by(slug: 'about') do |page|
+  page.title = 'About Us'
+  page.content = 'This is the about page content.'
+end
+
+Page.find_or_create_by(slug: 'contact') do |page|
+  page.title = 'Contact Us'
+  page.content = 'This is the contact page content.'
+end

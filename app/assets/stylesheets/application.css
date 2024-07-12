@@ -13,3 +13,32 @@
  *= require_tree .
  *= require_self
  */
+/* app/assets/stylesheets/application.css */
+.navbar {
+    text-align: center;
+    background-color: #333;
+    padding: 1rem;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+  }
+  
+  .navbar-item {
+    display: inline;
+    margin: 0 1rem;
+  }
+  
+  .navbar-item a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navbar-item a:hover {
+    text-decoration: underline;
+  }
+  

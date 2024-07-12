@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'home#index'
+
+  # Custom routes for About and Contact pages
+  get 'about', to: 'pages#show', slug: 'about', as: 'about'
+  get 'contact', to: 'pages#show', slug: 'contact', as: 'contact'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -10,6 +16,8 @@ Rails.application.routes.draw do
   resources :reviews
   resources :genres
 
+  # Using :slug instead of :id for Pages resource
+  resources :pages, param: :slug, only: [:show]
 
   get "up" => "rails/health#show", as: :rails_health_check
 
