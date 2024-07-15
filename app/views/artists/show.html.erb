@@ -1,0 +1,23 @@
+<div class="artist-profile">
+      <div class="artist-header">
+        <div class="artist-info">
+          <h2><%= @user.name %></h2>
+          <p>Province: <%= @user.province.name %></p>
+          <p><%= @artist.bio %></p>
+        </div>
+        <div class="artist-picture">
+          <%= image_tag @artist.profile_picture_url, alt: @user.name, width: 200 %>
+        </div>
+      </div>
+
+      <div class="artist-music">
+        <div class="songs">
+          <h3>Songs</h3>
+          <ul>
+            <% @artist.music.each do |song| %>
+              <li><%= song.title %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,17 @@
+<h2>All Genres</h2>
+    <div class="genre-container">
+      <% Genre.all.each_slice(6).with_index do |genres, index| %>
+        <div class="genre-row">
+          <% genres.each do |genre| %>
+            <div class="genre">
+              <% genre_name = genre.name.downcase.gsub(' ', '_').gsub('/', '_') %>
+              <%= link_to genre_path(genre) do %>
+                <%= image_tag "icons/#{genre_name}.png", alt: "#{genre.name} icon", style: 'width: 120px; height: 120px;' if File.exist?(Rails.root.join("app/assets/images/icons/#{genre_name}.png")) %>
+                <p><%= genre.name %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <% break if index == 2 %> <!-- Stop after processing 3 rows -->
+      <% end %>
+    </div>

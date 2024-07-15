@@ -2,32 +2,30 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
-/* app/assets/stylesheets/application.css */
-/* Name: Robert Fabros
-Project: Musika
-Ruby on Rails Project */
 
 body {
   margin: 0px;
   padding: 0px;
   background-color: #191B34;
-  background-image: url('bg-musika.jpg');
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
+  background-image: url('bg-musika.jpg') !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  color: #fff !important;
   font-family: "Inter-Regular", Helvetica;
+}
+
+body a {
+  color: #fff !important;
 }
 
 #wrapper {
@@ -83,6 +81,9 @@ main {
   margin: auto;
 }
 
+main p {
+  font-size: 18px !important;
+}
 
 #topheader {
   width: 1100px;
@@ -108,6 +109,18 @@ main {
 }
 
 main h1 {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 50px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 0 0 20px 0;
+  margin: 0;
+}
+
+main h2 {
   font-family: "Inter-Bold", Helvetica;
   font-weight: 700;
   color: #ffffff;
@@ -469,7 +482,7 @@ td:nth-child(3), th:nth-child(3) {
 }
 
 td:nth-child(4), th:nth-child(4) {
-  /* No background color for the 4th column */
+  background-color: #401693;
 }
 
 /* Make the image in the 4th column circular */
@@ -477,6 +490,7 @@ td:nth-child(4) img {
   display: block;
   margin: auto;
   border-radius: 50%; /* Apply circular border radius */
+  
 }
 
 /* Adjust column widths */
@@ -803,29 +817,6 @@ a.button, a.button:link, a.button:visited, input[type=submit], input[type=button
 
 
 
-.pagination {
-  text-align: center; /* Center the pagination container */
-  margin-top: 20px; /* Add some space above the pagination links */
-}
-
-.pagination a, .pagination span {
-  display: inline-block;
-  padding: 8px 16px;
-  margin: 0 4px;
-  border: 1px solid #ddd;
-  color: #c6750c;
-  text-decoration: none;
-}
-
-.pagination span.active {
-  background-color: #5559de;
-  color: #fff;
-}
-
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
-}
-
 .live-search {
   max-width: 400px;
   width: 100%; /* This makes it responsive, adjusting to the width of its parent container */
@@ -1013,6 +1004,34 @@ p.commentp a {
 }
 
 /* Featured Artists */
+.artist-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 40px 0px 0px 0px;
+}
+
+.artist-item {
+  width: calc(100% / 3 - 20px); /* Adjust width as needed */
+  text-align: center;
+}
+
+.artist-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.artist-item p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+}
+
+
+
+
 .artist-row {
   display: flex;
   justify-content: space-between;
@@ -1081,9 +1100,153 @@ p.commentp a {
 }
 
 
+/* Artist Profile */
 
+.artist-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+.artist-profile  h2 {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 50px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 0 0 20px 0;
+  margin: 0;
+}
+.artist-profile  h3 {
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+  padding: 0 0 20px 0;
+  margin: 0;
+}
+.artist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+}
 
+.artist-info {
+  flex: 1;
+  margin-right: 20px;
+}
 
+.artist-picture img {
+  border-radius: 50%;
+  margin-left: 20px;
+}
 
+.artist-music {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-top: 20px;
+}
 
+.artist-music h3 {
+  text-align: center;
+}
 
+.songs {
+  width: 100%;
+}
+
+.songs ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.songs li {
+  background: #e65100;
+  padding: 10px 25px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+  width: 100%;
+}
+
+/* Genre List */
+
+.genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.genre-item {
+  flex: 1 1 30%;
+  text-align: center;
+  margin: 10px;
+}
+
+.genre-item img {
+  display: block;
+  margin: 0 auto;
+}
+
+.genre-item p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* pagination */
+.pagination {
+  text-align: center; /* Center the pagination container */
+  margin-top: 20px; /* Add some space above the pagination links */
+}
+
+.pagination a, .pagination span {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 4px;
+  border: 1px solid #ddd;
+  color: #5559de !important;
+  text-decoration: none;
+}
+
+.pagination span.active {
+  background-color: #5559de !important;
+  color: #fff !important;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+/* Breadcrumbs */
+
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  color: #6c757d;
+  content: "/";
+}
+
+.breadcrumb-item.active {
+  color: #5559de;
+}

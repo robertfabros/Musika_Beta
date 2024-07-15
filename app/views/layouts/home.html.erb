@@ -40,8 +40,10 @@
             <% genres.each do |genre| %>
               <div class="genre">
             <% genre_name = genre.name.downcase.gsub(' ', '_').gsub('/', '_') %>
-            <%= image_tag "icons/#{genre_name}.png", alt: "#{genre.name} icon", style: 'width: 120px; height: 120px;' if File.exist?(Rails.root.join("app/assets/images/icons/#{genre_name}.png")) %>
-            <p><%= genre.name %></p>
+            <%= link_to genre_path(genre) do %>
+                <%= image_tag "icons/#{genre_name}.png", alt: "#{genre.name} icon", style: 'width: 120px; height: 120px;' if File.exist?(Rails.root.join("app/assets/images/icons/#{genre_name}.png")) %>
+                <p><%= genre.name %></p>
+              <% end %>
           </div>
             <% end %>
           </div>

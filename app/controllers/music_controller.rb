@@ -1,6 +1,7 @@
-class MusicsController < ApplicationController
+# app/controllers/music_controller.rb
+class MusicController < ApplicationController
   def index
-    @musics = Music.all
+    @musics = Music.page(params[:page]).per(15)
   end
 
   def show

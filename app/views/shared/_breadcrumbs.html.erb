@@ -1,0 +1,8 @@
+<% if @breadcrumbs.present? %>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Home', root_path %></li>
+      <%= @breadcrumbs.html_safe %>
+    </ol>
+  </nav>
+<% end %>
