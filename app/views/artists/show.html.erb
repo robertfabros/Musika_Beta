@@ -15,8 +15,8 @@
           <h3>Songs</h3>
           <ul>
             <% @artist.music.each do |song| %>
-              <li><%= song.title %></li>
-            <% end %>
+          <li><%= link_to song.title, music_path(song) %></li>
+        <% end %>
           </ul>
         </div>
       </div>
