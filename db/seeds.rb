@@ -82,30 +82,42 @@
 #   File.write(file_path, "Sample content for MP3 file #{i + 1}") unless File.exist?(file_path)
 # end
 
-# Seed 100 music tracks
-100.times do
-  music = Music.new(
-    artist: artists.sample,
-    title: Faker::Music.album,
-    price: Faker::Commerce.price(range: 0..10.0),
-    description: Faker::Lorem.paragraph
-  )
+# # Seed 100 music tracks
 
-  # Attach an MP3 file
-  file_path = mp3_files_dir.join("#{rand(1..10)}.mp3")
-  music.file.attach(io: File.open(file_path), filename: "#{rand(1..10)}.mp3", content_type: 'audio/mpeg')
+# require 'faker'
 
-  # Save the music record first before adding genres
-  if music.save
-    # Assign random genres after saving the music record
-    selected_genres = genres.sample(rand(1..3))
-    selected_genres.each do |genre|
-      MusicGenre.create(music: music, genre: genre)
-    end
-    puts "Created music: #{music.title} with genres: #{selected_genres.map(&:name).join(', ')}"
-  else
-    puts "Failed to create music: #{music.errors.full_messages.join(', ')}"
-  end
-end
+# # Define the directory containing your MP3 files
+# mp3_files_dir = Rails.root.join('db', 'seeds', 'mp3_files')
 
-puts "Seeded 100 music tracks"
+# # Assuming you have some artists and genres already created
+# artists = Artist.all
+# genres = Genre.all
+
+# # Seed 100 music tracks
+# 100.times do
+#   music = Music.new(
+#     artist: artists.sample,
+#     title: Faker::Music.album,
+#     price: Faker::Commerce.price(range: 0..10.0),
+#     description: Faker::Lorem.paragraph
+#   )
+
+#   # Attach an MP3 file
+#   file_path = mp3_files_dir.join("#{rand(1..10)}.mp3")
+#   music.file.attach(io: File.open(file_path), filename: "#{rand(1..10)}.mp3", content_type: 'audio/mpeg')
+
+#   # Select random genres
+#   selected_genres = genres.sample(rand(1..3))
+#   music.genre_id = selected_genres.first.id
+
+#   # Save the music record
+#   if music.save
+#     puts "Created music: #{music.title} with genre: #{selected_genres.first.name}"
+#   else
+#     puts "Failed to create music: #{music.errors.full_messages.join(', ')}"
+#   end
+# end
+
+# puts "Seeded 100 music tracks"
+
+# Seed music.csv
