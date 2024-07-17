@@ -2,6 +2,7 @@
 class MusicController < ApplicationController
   before_action :set_breadcrumbs, only: [:index, :show]
 
+
   def index
     @musics = Music.page(params[:page]).per(15)
     @breadcrumbs << content_tag(:li, 'Music', class: 'breadcrumb-item active', aria: { current: 'page' })
@@ -18,4 +19,5 @@ class MusicController < ApplicationController
   def set_breadcrumbs
     @breadcrumbs = []
   end
+
 end

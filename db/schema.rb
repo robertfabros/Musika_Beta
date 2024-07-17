@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_12_033922) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_044422) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -127,7 +127,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_033922) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "genre_id", null: false
     t.index ["artist_id"], name: "index_musics_on_artist_id"
+    t.index ["genre_id"], name: "index_musics_on_genre_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -193,7 +195,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_033922) do
     t.index ["province_id"], name: "index_users_on_province_id"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artists", "users"
   add_foreign_key "cart_items", "carts"
@@ -202,6 +203,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_033922) do
   add_foreign_key "music_genres", "genres"
   add_foreign_key "music_genres", "musics"
   add_foreign_key "musics", "artists"
+  add_foreign_key "musics", "genres"
   add_foreign_key "order_items", "musics"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "provinces"

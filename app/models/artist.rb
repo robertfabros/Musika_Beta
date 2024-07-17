@@ -1,6 +1,6 @@
 class Artist < ApplicationRecord
   belongs_to :user
-  has_many :music
+  has_many :musics
 
   has_one_attached :profile_picture
 

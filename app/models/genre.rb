@@ -1,6 +1,5 @@
 class Genre < ApplicationRecord
-  has_many :music_genres
-  has_many :music, through: :music_genres
+  has_many :musics
 
   validates :name, presence: true
 
@@ -9,6 +8,6 @@ class Genre < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[music music_genres]
+    %w[musics]
   end
 end

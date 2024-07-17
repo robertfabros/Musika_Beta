@@ -9,7 +9,7 @@ class SearchController < ApplicationController
     else
       @results = case @category
                  when 'music'
-                   Music.where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", "%#{@query}%", "%#{@query}%")
+                   Music.joins(artist: :user).joins(:genre).where("LOWER(musics.title) LIKE ? OR LOWER(musics.description) LIKE ? OR LOWER(genres.name) LIKE ? OR LOWER(users.name) LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%", "%#{@query}%")
                  when 'artists'
                    Artist.joins(:user).where("LOWER(users.name) LIKE ? OR LOWER(artists.bio) LIKE ?", "%#{@query}%", "%#{@query}%")
                  when 'genres'
@@ -17,7 +17,7 @@ class SearchController < ApplicationController
                  when 'comments'
                    defined?(Comment) ? Comment.where("LOWER(body) LIKE ?", "%#{@query}%") : []
                  else
-                   Music.where("LOWER(title) LIKE ? OR LOWER(description) LIKE ?", "%#{@query}%", "%#{@query}%") +
+                   Music.joins(artist: :user).joins(:genre).where("LOWER(musics.title) LIKE ? OR LOWER(musics.description) LIKE ? OR LOWER(genres.name) LIKE ? OR LOWER(users.name) LIKE ?", "%#{@query}%", "%#{@query}%", "%#{@query}%", "%#{@query}%") +
                    Artist.joins(:user).where("LOWER(users.name) LIKE ? OR LOWER(artists.bio) LIKE ?", "%#{@query}%", "%#{@query}%") +
                    Genre.where("LOWER(name) LIKE ?", "%#{@query}%") +
                    (defined?(Comment) ? Comment.where("LOWER(body) LIKE ?", "%#{@query}%") : [])

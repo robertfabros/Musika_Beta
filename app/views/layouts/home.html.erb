@@ -10,14 +10,14 @@
     <%= render 'layouts/header' %>
     
       <div class="search-container">
-        <h1>Search for your favourite artists or country of artist</h1>
-        <%= form_with(url: search_path, method: :get, local: true) do |form| %>
-          <%= form.text_field :query, placeholder: "Search...", class: "search-input" %>
-          <%= form.select :category, options_for_select([['All', ''], ['Music', 'music'], ['Artists', 'artists'], ['Genres', 'genres'], ['Comments', 'comments']]), {}, class: "search-category" %>
-          <%= form.submit "Search", class: "search-button" %>
-        <% end %>
-        <div id="live-search-results" class="live-search"></div>
-      </div>
+  <h1>Search for your favourite artists or country of artist</h1>
+  <%= form_with(url: search_path, method: :get, local: true) do |form| %>
+    <%= form.text_field :query, placeholder: "Search...", class: "search-input" %>
+    <%= form.select :category, options_for_select([['All', ''], ['Music', 'music'], ['Artists', 'artists'], ['Genres', 'genres'], ['Comments', 'comments']]), {}, class: "search-category" %>
+    <%= form.submit "Search", class: "search-button" %>
+  <% end %>
+  <div id="live-search-results" class="live-search"></div>
+</div>
 
 
       <h1 class="featured">Featured Artists</h1>

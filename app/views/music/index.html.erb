@@ -1,31 +1,33 @@
+<!-- app/views/music/index.html.erb -->
+
 <h2>All Songs</h2>
-    <div class="music-list">
-      <table>
-        <thead>
-          <tr>
-            <th>Artist</th>
-            <th>Song</th>
-            <th>Genres</th>
-            <th>Price</th>
-            <th>File</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @musics.each do |music| %>
-            <tr>
-              <td><%= link_to music.artist.name, artist_path(music.artist) %></td>
-              <td><%= link_to music.title, music_path(music) %></td>
-              <td><%= music.genres.map(&:name).join(", ") %></td>
-              <td><%= number_to_currency(music.price) %></td>
-              <td>
-                <% if music.file.attached? %>
-                  <%= link_to music.file.filename.to_s, rails_blob_path(music.file, disposition: "attachment") %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @musics %>
-    </div>
-    <br clear="all">
+<div class="music-list">
+  <table>
+    <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Song</th>
+        <th>Genre</th>
+        <th>Price</th>
+        <th>File</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @musics.each do |music| %>
+        <tr>
+          <td><%= link_to music.artist.user.name, artist_path(music.artist) %></td>
+          <td><%= link_to music.title, music_path(music) %></td>
+          <td><%= music.genre.name %></td>
+          <td><%= number_to_currency(music.price) %></td>
+          <td>
+            <% if music.file.attached? %>
+              <%= link_to music.file.filename.to_s, rails_blob_path(music.file, disposition: "attachment") %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @musics %>
+</div>
+<br clear="all">

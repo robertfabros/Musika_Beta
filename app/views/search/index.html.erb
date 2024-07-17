@@ -1,26 +1,23 @@
-<!-- app/views/search/index.html.erb -->
+<h2>Search Results</h2>
 
-    <h2>Search Results</h2>
-
-    <% if @results.any? %>
-      <div class="results-row-container">
-        <% @results.each do |result| %>
-          <div class="result-row">
-            <% if result.is_a?(Music) %>
-              <a href="#"><%= result.title %></a>
-              <p><%= result.description %></p>
-            <% elsif result.is_a?(Artist) %>
-              <a href="#"><%= result.user.name %></a>
-              <p><%= result.bio %></p>
-            <% elsif result.is_a?(Genre) %>
-              <a href="#"><%= result.name %></a>
-            <% elsif result.is_a?(Comment) %>
-              <a href="#"><%= result.body %></a>
-            <% end %>
-          </div>
+<% if @results.any? %>
+  <div class="results-row-container">
+    <% @results.each do |result| %>
+      <div class="result-row">
+        <% if result.is_a?(Music) %>
+          <a href="<%= music_path(result) %>"><%= result.title %></a>
+          <p><%= result.description %></p>
+        <% elsif result.is_a?(Artist) %>
+          <a href="<%= artist_path(result) %>"><%= result.user.name %></a>
+          <p><%= result.bio %></p>
+        <% elsif result.is_a?(Genre) %>
+          <a href="<%= genre_path(result) %>"><%= result.name %></a>
+        <% elsif result.is_a?(Comment) %>
+          <a href="#"><%= result.body %></a>
         <% end %>
       </div>
-    <% else %>
-      <p>No results found.</p>
     <% end %>
-
+  </div>
+<% else %>
+  <p>No results found.</p>
+<% end %>

@@ -1,12 +1,14 @@
+<!-- app/views/music/show.html.erb -->
+
 <h2><%= @music.title %></h2>
-    <div class="music-details">
-      <p><strong>Artist:</strong> <%= link_to @music.artist.name, artist_path(@music.artist) %></p>
-      <p><strong>Genres:</strong> <%= @music.genres.map(&:name).join(", ") %></p>
-      <p><strong>Price:</strong> <%= number_to_currency(@music.price) %></p>
-      <p><strong>Description:</strong> <%= @music.description %></p>
-      <p><strong>File:</strong> 
-        <% if @music.file.attached? %>
-          <%= link_to @music.file.filename.to_s, rails_blob_path(@music.file, disposition: "attachment") %>
-        <% end %>
-      </p>
-    </div>
+<div class="music-details">
+  <p><strong>Artist:</strong> <%= link_to @music.artist.user.name, artist_path(@music.artist) %></p>
+  <p><strong>Genre:</strong> <%= @music.genre.name %></p>
+  <p><strong>Price:</strong> <%= number_to_currency(@music.price) %></p>
+  <p><strong>Description:</strong> <%= @music.description %></p>
+  <p><strong>File:</strong> 
+    <% if @music.file.attached? %>
+      <%= link_to @music.file.filename.to_s, rails_blob_path(@music.file, disposition: "attachment") %>
+    <% end %>
+  </p>
+</div>

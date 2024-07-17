@@ -1,11 +1,11 @@
 ActiveAdmin.register Music do
-  permit_params :artist_id, :title, :price, :file, :description, genre_ids: []
+  permit_params :artist_id, :title, :price, :file, :description, :genre_id
 
   form do |f|
     f.inputs "Music Details" do
-      f.input :artist, as: :select, collection: User.where(role: :artist).map { |u| [u.name, u.id] }, include_blank: false
+      f.input :artist, as: :select, collection: Artist.all.map { |a| [a.user.name, a.id] }, include_blank: false
       f.input :title
-      f.input :genres, as: :check_boxes, collection: Genre.all
+      f.input :genre, as: :select, collection: Genre.all.map { |g| [g.name, g.id] }, include_blank: false
       f.input :price
       f.input :file, as: :file
       f.input :description
@@ -17,9 +17,7 @@ ActiveAdmin.register Music do
     attributes_table do
       row :artist
       row :title
-      row :genres do
-        music.genres.map(&:name).join(", ")
-      end
+      row :genre
       row :price
       row :file do
         if music.file.attached?
@@ -38,9 +36,7 @@ ActiveAdmin.register Music do
     id_column
     column :artist
     column :title
-    column :genres do |music|
-      music.genres.map(&:name).join(", ")
-    end
+    column :genre
     column :price
     column :file do |music|
       if music.file.attached?
@@ -53,7 +49,7 @@ ActiveAdmin.register Music do
 
   filter :artist
   filter :title
-  filter :genres, as: :select, collection: Genre.all.map { |genre| [genre.name, genre.id] }
+  filter :genre, as: :select, collection: Genre.all.map { |genre| [genre.name, genre.id] }
   filter :price
   filter :created_at
 end
