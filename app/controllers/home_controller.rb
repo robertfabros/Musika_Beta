@@ -5,4 +5,6 @@ class HomeController < ApplicationController
     @featured_artists = Artist.includes(:user).limit(5)
     @genres = Genre.all
   end
+
+
 end

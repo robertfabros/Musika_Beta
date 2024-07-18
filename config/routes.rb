@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+  get 'registration_success', to: 'pages#registration_success', as: :registration_success
+
   root 'home#index'
   get 'search', to: 'search#index'
   get 'about', to: 'pages#show', slug: 'about', as: 'about'

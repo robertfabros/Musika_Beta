@@ -359,6 +359,7 @@ DEPENDENCIES
   bootsnap
   breadcrumbs_on_rails
   capybara
+  csv
   debug
   devise
   faker

@@ -11,17 +11,30 @@
             <li><%= link_to 'About', about_path %></li>
             <li><%= link_to 'Contact', contact_path %></li>
             <li><%= link_to 'Admin', admin_root_path %></li>
+            <% if user_signed_in? %>
+          <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Sign up', new_user_registration_path %></li>
+          <li><%= link_to 'Login', new_user_session_path %></li>
+        <% end %>
           </ul>
         </nav>
       </div>
     </header>
     </div>
-    <div id="topheader">
-      <div class="logo">
-        <%= image_tag 'musika-logo.svg', alt: 'Musika Logo', width: '222' %>
-      </div>
-      <div class="welcome-text">
-        Welcome Visitor!
-      </div>
-    </div>
+<div id="topheader">
+  <div class="logo">
+    <%= image_tag 'musika-logo.svg', alt: 'Musika Logo', width: '222' %>
+  </div>
+  <div class="welcome-text">
+    <% if user_signed_in? && current_user.respond_to?(:name) %>
+      Welcome <%= current_user.name %>!
+    <% else %>
+      Welcome Visitor!
+    <% end %>
+  </div>
+</div>
+
+
     <main>

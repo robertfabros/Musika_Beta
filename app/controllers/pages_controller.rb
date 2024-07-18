@@ -7,6 +7,9 @@ class PagesController < ApplicationController
     @breadcrumbs << content_tag(:li, @page.title, class: 'breadcrumb-item active', aria: { current: 'page' })
   end
 
+  def registration_success
+  end
+
   private
 
   def set_breadcrumbs
