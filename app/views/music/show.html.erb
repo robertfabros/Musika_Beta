@@ -1,5 +1,3 @@
-<!-- app/views/music/show.html.erb -->
-
 <h2><%= @music.title %></h2>
 <div class="music-details">
   <p><strong>Artist:</strong> <%= link_to @music.artist.user.name, artist_path(@music.artist) %></p>
@@ -11,4 +9,5 @@
       <%= link_to @music.file.filename.to_s, rails_blob_path(@music.file, disposition: "attachment") %>
     <% end %>
   </p>
+  <%= button_to 'Add to Cart', add_to_cart_music_path(@music), method: :post %> <!-- Correct path helper -->
 </div>

@@ -1250,3 +1250,26 @@ p.commentp a {
 .breadcrumb-item.active {
   color: #5559de;
 }
+
+/* Songs */
+
+.songs ul {
+  list-style: none;
+  padding: 0;
+}
+
+.song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.add-to-cart-button {
+  background-color: #191a34!important;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 13px!important;
+}

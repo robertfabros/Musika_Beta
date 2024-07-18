@@ -11,9 +11,14 @@ Rails.application.routes.draw do
 
   resources :users
   resources :artists
-  resources :music, only: [:index, :show]
-  resources :carts
-  resources :orders
+  resources :cart_items, only: [:create, :update, :destroy]
+  resource :cart, only: [:show] do
+    post 'add_to_cart', to: 'carts#add_to_cart', as: :add_to_cart
+  end
+  resources :music, only: [:index, :show] do
+    post 'add_to_cart', to: 'carts#add_to_cart', on: :member
+  end
+  resources :orders, only: [:new, :create, :show]
   resources :reviews
   resources :genres
   resources :comments

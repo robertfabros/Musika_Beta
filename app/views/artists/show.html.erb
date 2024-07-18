@@ -1,23 +1,26 @@
 <div class="artist-profile">
-      <div class="artist-header">
-        <div class="artist-info">
-          <h2><%= @user.name %></h2>
-          <p>Province: <%= @user.province.name %></p>
-          <p><%= @artist.bio %></p>
-        </div>
-        <div class="artist-picture">
-          <%= image_tag @artist.profile_picture_url, alt: @user.name, width: 200 %>
-        </div>
-      </div>
-
-      <div class="artist-music">
-        <div class="songs">
-          <h3>Songs</h3>
-          <ul>
-            <% @artist.musics.each do |song| %>
-          <li><%= link_to song.title, music_path(song) %></li>
-        <% end %>
-          </ul>
-        </div>
-      </div>
+  <div class="artist-header">
+    <div class="artist-info">
+      <h2><%= @user.name %></h2>
+      <p>Province: <%= @user.province.name %></p>
+      <p><%= @artist.bio %></p>
     </div>
+    <div class="artist-picture">
+      <%= image_tag @artist.profile_picture_url, alt: @user.name, width: 200 %>
+    </div>
+  </div>
+
+  <div class="artist-music">
+    <div class="songs">
+      <h3>Songs</h3>
+      <ul>
+        <% @artist.musics.each do |song| %>
+          <li class="song-item">
+            <%= link_to song.title, music_path(song) %>
+            <%= button_to 'Add to Cart', add_to_cart_music_path(song), method: :post, class: 'add-to-cart-button' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
