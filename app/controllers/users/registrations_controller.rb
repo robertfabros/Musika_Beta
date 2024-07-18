@@ -1,17 +1,31 @@
+# app/controllers/users/registrations_controller.rb
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :configure_sign_up_params, only: [:create]
 
   def create
-    super do |resource|
-      if resource.persisted?
-        sign_out resource
-        redirect_to registration_success_path and return
+    build_resource(sign_up_params)
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
     end
   end
 
   protected
 
-  def after_sign_up_path_for(resource)
-    registration_success_path # This might not be needed if we handle redirection in create
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :address, :province_id, :role])
   end
 end

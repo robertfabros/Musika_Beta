@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'users/registrations' }
-  get 'registration_success', to: 'pages#registration_success', as: :registration_success
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   root 'home#index'
   get 'search', to: 'search#index'

@@ -16,6 +16,9 @@
       <%= breadcrumbs %>
     </div>
   <% end %>
+  <% flash.each do |key, message| %>
+      <div class="flash <%= key %>"><%= message %></div>
+    <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
