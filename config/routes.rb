@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
+  namespace :customers do
+    resource :dashboard, only: :show
+  end
+
   root 'home#index'
   get 'search', to: 'search#index'
   get 'about', to: 'pages#show', slug: 'about', as: 'about'
@@ -13,7 +17,9 @@ Rails.application.routes.draw do
   resources :artists
   resources :cart_items, only: [:create, :update, :destroy]
   resource :cart, only: [:show] do
-    post 'add_to_cart', to: 'carts#add_to_cart', as: :add_to_cart
+    post 'add_to_cart', on: :collection
+    delete 'remove_from_cart', on: :collection
+    patch 'update_cart', on: :collection
   end
   resources :music, only: [:index, :show] do
     post 'add_to_cart', to: 'carts#add_to_cart', on: :member

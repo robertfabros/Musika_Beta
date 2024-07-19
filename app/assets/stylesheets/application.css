@@ -70,7 +70,16 @@ header nav ul a {
 header nav ul a:hover {
   text-decoration: underline !important;
 }
+.cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+.cart-icon img {
+  width: 24px;
+  height: 24px;
+}
 li {
   margin-right: 15px;
 }

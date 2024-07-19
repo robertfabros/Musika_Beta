@@ -9,5 +9,5 @@
       <%= link_to @music.file.filename.to_s, rails_blob_path(@music.file, disposition: "attachment") %>
     <% end %>
   </p>
-  <%= button_to 'Add to Cart', add_to_cart_music_path(@music), method: :post %> <!-- Correct path helper -->
+  <%= button_to 'Add to Cart', add_to_cart_cart_path(music_id: @music.id), method: :post, class: 'button', style: 'background-color: #5559de;' %>
 </div>

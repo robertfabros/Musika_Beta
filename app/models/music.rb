@@ -2,6 +2,7 @@ class Music < ApplicationRecord
   belongs_to :artist
   belongs_to :genre
   has_many :cart_items
+  has_many :carts, through: :cart_items
   has_many :order_items
   has_many :reviews
 

@@ -1,3 +1,4 @@
+<!-- app/views/artists/show.html.erb -->
 <div class="artist-profile">
   <div class="artist-header">
     <div class="artist-info">
@@ -17,7 +18,7 @@
         <% @artist.musics.each do |song| %>
           <li class="song-item">
             <%= link_to song.title, music_path(song) %>
-            <%= button_to 'Add to Cart', add_to_cart_music_path(song), method: :post, class: 'add-to-cart-button' %>
+            <%= button_to 'Add to Cart', add_to_cart_cart_path(music_id: song.id), method: :post, class: 'button', style: 'background-color: #5559de;' %>
           </li>
         <% end %>
       </ul>

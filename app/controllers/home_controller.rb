@@ -5,6 +5,10 @@ class HomeController < ApplicationController
     @featured_artists = Artist.includes(:user).limit(5)
     @genres = Genre.all
   end
+  private
 
+  def initialize_cart
+    session[:cart] ||= []
+  end
 
 end

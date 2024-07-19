@@ -1,0 +1,31 @@
+<!-- app/views/customers/dashboards/show.html.erb -->
+<h2>My Dashboard</h2>
+
+<h3>My Cart</h3>
+<% if @cart_items.blank? %>
+  <p>Your cart is empty.</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <tr>
+          <td><%= item.music.title %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(item.price) %></td>
+          <td><%= number_to_currency(item.price * item.quantity) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="cart-total">
+    <strong>Total: </strong> <%= number_to_currency(@cart_items.sum { |item| item.price * item.quantity }) %>
+  </div>
+<% end %>

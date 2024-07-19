@@ -20,6 +20,12 @@
         <% end %>
           </ul>
         </nav>
+        <div class="cart-icon">
+    <%= link_to cart_path do %>
+      <%= image_tag 'cart_icon.png', alt: 'Cart' %>
+      (<%= current_user.cart.cart_items.count if user_signed_in? && current_user.cart.present? %>)
+    <% end %>
+  </div>
       </div>
     </header>
     </div>
