@@ -9,6 +9,7 @@ class CartsController < ApplicationController
 
   def add_to_cart
     @cart_item = @cart.cart_items.find_or_initialize_by(music_id: params[:music_id])
+    @cart_item.quantity ||= 0
     @cart_item.quantity += 1
     @cart_item.price = @cart_item.music.price
 
