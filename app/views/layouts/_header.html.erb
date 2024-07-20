@@ -20,10 +20,10 @@
         <% end %>
           </ul>
         </nav>
-        <div class="cart-icon">
+         <div class="cart-icon">
     <%= link_to cart_path do %>
       <%= image_tag 'cart_icon.png', alt: 'Cart' %>
-      (<%= current_user.cart.cart_items.count if user_signed_in? && current_user.cart.present? %>)
+      (<%= session[:cart]&.sum { |item| item["quantity"] } || 0 %>)
     <% end %>
   </div>
       </div>
