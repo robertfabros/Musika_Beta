@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :music, only: [:index, :show] do
     post 'add_to_cart', to: 'carts#add_to_cart', on: :member
   end
-  resources :orders, only: [:new, :create, :show]
+  resources :orders, only: [:index, :show, :new, :create]
   resources :reviews
   resources :genres
   resources :comments

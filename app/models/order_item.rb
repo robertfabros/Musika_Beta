@@ -3,13 +3,17 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :music
 
-  validates :order_id, presence: true
-  validates :music_id, presence: true
-  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :order_id, :music_id, :quantity, :price, presence: true
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "id", "id_value", "music_id", "order_id", "price", "quantity", "updated_at"]
+  def total_price
+    price * quantity
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id order_id music_id quantity price created_at updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[order music]
+  end
 end

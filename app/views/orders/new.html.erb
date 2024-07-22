@@ -1,0 +1,47 @@
+<!-- app/views/orders/new.html.erb -->
+<h2>CHECKOUT</h2>
+
+<%= form_with(model: @order, url: orders_path, method: :post, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :province_id, "Province" %><br>
+    <%= f.collection_select :province_id, @provinces, :id, :name, selected: current_user.province_id %>
+  </div>
+
+  <h3>Your Cart</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <tr>
+          <td><%= item.music.title %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(item.price) %></td>
+          <td><%= number_to_currency(item.price * item.quantity) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% subtotal = @cart_items.sum { |item| item.quantity * item.price } %>
+  <% gst = subtotal * current_user.province.gst %>
+  <% pst = subtotal * current_user.province.pst %>
+  <% qst = subtotal * current_user.province.qst %>
+  <% hst = subtotal * current_user.province.hst %>
+  <% total_price = subtotal + gst + pst + qst + hst %>
+
+  <p>Subtotal: <%= number_to_currency(subtotal) %></p>
+  <p>GST: <%= number_to_currency(gst) %></p>
+  <p>PST: <%= number_to_currency(pst) %></p>
+  <p>QST: <%= number_to_currency(qst) %></p>
+  <p>HST: <%= number_to_currency(hst) %></p>
+  <p>Total Price: <%= number_to_currency(total_price) %></p>
+
+  <%= f.submit "Place Order", class: "btn btn-primary" %>
+<% end %>

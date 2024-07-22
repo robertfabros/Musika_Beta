@@ -1,0 +1,39 @@
+<h2>Order Details</h2>
+<p>Order ID: <%= @order.id %></p>
+<p>Total Price: <%= number_to_currency(@order.total_price) %></p>
+<p>Status: <%= @order.status %></p>
+
+<h3>Order Items</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |item| %>
+      <tr>
+        <td><%= item.music.title %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.price) %></td>
+        <td><%= number_to_currency(item.price * item.quantity) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Tax Calculation</h3>
+<% subtotal = @order.order_items.sum { |item| item.quantity * item.price } %>
+<% gst = subtotal * @order.province.gst %>
+<% pst = subtotal * @order.province.pst %>
+<% qst = subtotal * @order.province.qst %>
+<% hst = subtotal * @order.province.hst %>
+<p>Subtotal: <%= number_to_currency(subtotal) %></p>
+<p>GST: <%= number_to_currency(gst) %></p>
+<p>PST: <%= number_to_currency(pst) %></p>
+<p>QST: <%= number_to_currency(qst) %></p>
+<p>HST: <%= number_to_currency(hst) %></p>
+<p>Total Price: <%= number_to_currency(subtotal + gst + pst + qst + hst) %></p>
