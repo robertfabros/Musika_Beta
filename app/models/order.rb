@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
 
   validates :user_id, :province_id, :total_price, :status, presence: true
+  validates :status, presence: true, inclusion: { in: %w[pending paid shipped] }
 
   def calculate_total_price
     item_total = order_items.sum(&:total_price)

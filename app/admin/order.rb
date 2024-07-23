@@ -1,5 +1,6 @@
+# app/admin/orders.rb
 ActiveAdmin.register Order do
-  permit_params :user_id, :province_id, :total_price, :status
+  permit_params :user_id, :province_id, :total_price, :status, :stripe_payment_id
 
   index do
     selectable_column
@@ -8,6 +9,7 @@ ActiveAdmin.register Order do
     column :province
     column :total_price
     column :status
+    column :stripe_payment_id
     column :created_at
     column :updated_at
     actions
@@ -20,6 +22,7 @@ ActiveAdmin.register Order do
       row :province
       row :total_price
       row :status
+      row :stripe_payment_id
       row :created_at
       row :updated_at
     end
@@ -45,6 +48,7 @@ ActiveAdmin.register Order do
       f.input :province
       f.input :total_price
       f.input :status, as: :select, collection: ['new', 'paid', 'shipped']
+      f.input :stripe_payment_id
     end
     f.actions
   end

@@ -1,4 +1,3 @@
-# app/controllers/orders_controller.rb
 class OrdersController < ApplicationController
   before_action :authenticate_user!
 
@@ -54,8 +53,9 @@ class OrdersController < ApplicationController
 
   def success
     @order = current_user.orders.find(params[:id])
-    @order.update(status: 'paid')
-    redirect_to @order, notice: 'Payment was successfully processed.'
+    stripe_session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @order.update(status: 'paid', stripe_payment_id: stripe_session.payment_intent)
+    redirect_to success_order_url(@order)
   end
 
   def cancel
@@ -80,10 +80,10 @@ class OrdersController < ApplicationController
   end
 
   def order_success_url(order)
-    Rails.application.routes.url_helpers.order_url(order, action: 'success', host: '127.0.0.1', port: 3000)
+    Rails.application.routes.url_helpers.success_order_url(order, host: '127.0.0.1', port: 3000) + "?session_id={CHECKOUT_SESSION_ID}"
   end
 
   def order_cancel_url(order)
-    Rails.application.routes.url_helpers.order_url(order, action: 'cancel', host: '127.0.0.1', port: 3000)
+    Rails.application.routes.url_helpers.cancel_order_url(order, host: '127.0.0.1', port: 3000)
   end
 end

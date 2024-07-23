@@ -1,4 +1,3 @@
-# app/services/stripe_payment_service.rb
 class StripePaymentService
   def initialize(order)
     @order = order
@@ -19,7 +18,7 @@ class StripePaymentService
       }],
       mode: 'payment',
       success_url: success_url,
-      cancel_url: cancel_url,
+      cancel_url: cancel_url
     )
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'webhooks/stripe'
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   namespace :customers do
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :genres
   resources :comments
 
-  post 'stripe_webhooks', to: 'stripe_webhooks#create'
+
 
   # Using :slug instead of :id for Pages resource
   resources :pages, param: :slug, only: [:show]
