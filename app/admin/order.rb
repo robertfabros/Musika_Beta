@@ -44,7 +44,7 @@ ActiveAdmin.register Order do
       f.input :user
       f.input :province
       f.input :total_price
-      f.input :status
+      f.input :status, as: :select, collection: ['new', 'paid', 'shipped']
     end
     f.actions
   end

@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   def pay
     @order = current_user.orders.find(params[:id])
     service = StripePaymentService.new(@order)
-    session = service.create_checkout_session
+    session = service.create_checkout_session(order_success_url(@order), order_cancel_url(@order))
 
     redirect_to session.url, allow_other_host: true
   end
@@ -78,6 +78,7 @@ class OrdersController < ApplicationController
     hst = subtotal * current_user.province.hst
     subtotal + gst + pst + qst + hst
   end
+
   def order_success_url(order)
     Rails.application.routes.url_helpers.order_url(order, action: 'success', host: '127.0.0.1', port: 3000)
   end

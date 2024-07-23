@@ -1,8 +1,7 @@
-# app/controllers/stripe_webhooks_controller.rb
 class StripeWebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def create
+  def stripe
     payload = request.body.read
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
     event = nil
@@ -22,7 +21,6 @@ class StripeWebhooksController < ApplicationController
     case event['type']
     when 'checkout.session.completed'
       handle_checkout_session_completed(event['data']['object'])
-    # Handle other event types as needed
     end
 
     render json: { message: 'success' }
@@ -35,6 +33,6 @@ class StripeWebhooksController < ApplicationController
     return unless order
 
     order.update(status: 'paid')
-    # You can also trigger additional actions like sending a confirmation email
+    # Trigger additional actions like sending a confirmation email if needed
   end
 end
