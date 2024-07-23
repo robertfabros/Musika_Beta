@@ -52,6 +52,17 @@ class OrdersController < ApplicationController
     redirect_to session.url, allow_other_host: true
   end
 
+  def success
+    @order = current_user.orders.find(params[:id])
+    @order.update(status: 'paid')
+    redirect_to @order, notice: 'Payment was successfully processed.'
+  end
+
+  def cancel
+    @order = current_user.orders.find(params[:id])
+    redirect_to @order, alert: 'Payment was canceled.'
+  end
+
   private
 
   def order_params
@@ -66,5 +77,12 @@ class OrdersController < ApplicationController
     qst = subtotal * current_user.province.qst
     hst = subtotal * current_user.province.hst
     subtotal + gst + pst + qst + hst
+  end
+  def order_success_url(order)
+    Rails.application.routes.url_helpers.order_url(order, action: 'success', host: '127.0.0.1', port: 3000)
+  end
+
+  def order_cancel_url(order)
+    Rails.application.routes.url_helpers.order_url(order, action: 'cancel', host: '127.0.0.1', port: 3000)
   end
 end

@@ -19,7 +19,7 @@ class StripePaymentService
       }],
       mode: 'payment',
       success_url: Rails.application.routes.url_helpers.order_url(@order, host: default_url_options[:host]),
-      cancel_url: Rails.application.routes.url_helpers.order_url(@order, host: default_url_options[:host]),
+      cancel_url: 'http://127.0.0.1:3000/',
     )
   end
 
