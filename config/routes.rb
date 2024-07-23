@@ -28,15 +28,19 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show, :new, :create] do
     member do
       post 'pay'
-      get 'success'
-      get 'cancel'
+      get 'success', to: 'orders#success', as: 'success'
+      get 'cancel', to: 'orders#cancel', as: 'cancel'
     end
   end
   resources :reviews
   resources :genres
   resources :comments
 
-
+  resources :provinces, only: [] do
+    member do
+      get 'taxes'
+    end
+  end
 
   # Using :slug instead of :id for Pages resource
   resources :pages, param: :slug, only: [:show]

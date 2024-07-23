@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
   def pay
     @order = current_user.orders.find(params[:id])
     service = StripePaymentService.new(@order)
-    session = service.create_checkout_session(order_success_url(@order), order_cancel_url(@order))
+    session = service.create_checkout_session(order_success_url(@order) + "?session_id={CHECKOUT_SESSION_ID}", order_cancel_url(@order))
 
     redirect_to session.url, allow_other_host: true
   end
@@ -72,6 +72,7 @@ class OrdersController < ApplicationController
   def calculate_total_price
     cart_items = current_user.cart.cart_items
     subtotal = cart_items.sum { |item| item.quantity * item.price }
+    province = Province.find(order_params[:province_id])
     gst = subtotal * current_user.province.gst
     pst = subtotal * current_user.province.pst
     qst = subtotal * current_user.province.qst
@@ -80,7 +81,7 @@ class OrdersController < ApplicationController
   end
 
   def order_success_url(order)
-    Rails.application.routes.url_helpers.success_order_url(order, host: '127.0.0.1', port: 3000) + "?session_id={CHECKOUT_SESSION_ID}"
+    Rails.application.routes.url_helpers.success_order_url(order, host: '127.0.0.1', port: 3000)
   end
 
   def order_cancel_url(order)
