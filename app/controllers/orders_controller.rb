@@ -1,3 +1,4 @@
+# app/controllers/orders_controller.rb
 class OrdersController < ApplicationController
   before_action :authenticate_user!
 
@@ -55,12 +56,12 @@ class OrdersController < ApplicationController
     @order = current_user.orders.find(params[:id])
     stripe_session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @order.update(status: 'paid', stripe_payment_id: stripe_session.payment_intent)
-    redirect_to success_order_url(@order)
+    render 'success'
   end
 
   def cancel
     @order = current_user.orders.find(params[:id])
-    redirect_to @order, alert: 'Payment was canceled.'
+    render 'cancel'
   end
 
   private
@@ -73,10 +74,10 @@ class OrdersController < ApplicationController
     cart_items = current_user.cart.cart_items
     subtotal = cart_items.sum { |item| item.quantity * item.price }
     province = Province.find(order_params[:province_id])
-    gst = subtotal * current_user.province.gst
-    pst = subtotal * current_user.province.pst
-    qst = subtotal * current_user.province.qst
-    hst = subtotal * current_user.province.hst
+    gst = subtotal * province.gst
+    pst = subtotal * province.pst
+    qst = subtotal * province.qst
+    hst = subtotal * province.hst
     subtotal + gst + pst + qst + hst
   end
 

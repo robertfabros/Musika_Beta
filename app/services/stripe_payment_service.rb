@@ -1,3 +1,4 @@
+# app/services/stripe_payment_service.rb
 class StripePaymentService
   def initialize(order)
     @order = order
