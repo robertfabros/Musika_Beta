@@ -38,6 +38,28 @@ class OrdersController < ApplicationController
     end
   end
 
+  def pay
+    @order = current_user.orders.find(params[:id])
+    token = params[:stripeToken]
+
+    charge = Stripe::Charge.create(
+      amount: (@order.total_price * 100).to_i, # amount in cents
+      currency: 'usd',
+      description: "Order ##{@order.id}",
+      source: token
+    )
+
+    if charge.paid
+      @order.update(status: 'paid', stripe_payment_id: charge.id)
+      redirect_to @order, notice: 'Payment was successfully processed.'
+    else
+      redirect_to @order, alert: 'Payment failed.'
+    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to @order
+  end
+
   private
 
   def order_params
