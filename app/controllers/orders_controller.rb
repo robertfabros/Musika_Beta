@@ -1,3 +1,4 @@
+# app/controllers/orders_controller.rb
 class OrdersController < ApplicationController
   before_action :authenticate_user!
 
@@ -7,6 +8,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find(params[:id])
+    @subtotal = @order.order_items.sum { |item| item.quantity * item.price }
+    @gst = @subtotal * @order.province.gst
+    @pst = @subtotal * @order.province.pst
+    @qst = @subtotal * @order.province.qst
+    @hst = @subtotal * @order.province.hst
   end
 
   def new
@@ -40,24 +46,10 @@ class OrdersController < ApplicationController
 
   def pay
     @order = current_user.orders.find(params[:id])
-    token = params[:stripeToken]
+    service = StripePaymentService.new(@order)
+    session = service.create_checkout_session
 
-    charge = Stripe::Charge.create(
-      amount: (@order.total_price * 100).to_i, # amount in cents
-      currency: 'usd',
-      description: "Order ##{@order.id}",
-      source: token
-    )
-
-    if charge.paid
-      @order.update(status: 'paid', stripe_payment_id: charge.id)
-      redirect_to @order, notice: 'Payment was successfully processed.'
-    else
-      redirect_to @order, alert: 'Payment failed.'
-    end
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to @order
+    redirect_to session.url, allow_other_host: true
   end
 
   private
