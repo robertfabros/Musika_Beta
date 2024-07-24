@@ -1,5 +1,5 @@
 ActiveAdmin.register Music do
-  permit_params :artist_id, :title, :price, :file, :description, :genre_id
+  permit_params :artist_id, :title, :price, :file, :description, :genre_id, :on_sale
 
   form do |f|
     f.inputs "Music Details" do
@@ -9,6 +9,7 @@ ActiveAdmin.register Music do
       f.input :price
       f.input :file, as: :file
       f.input :description
+      f.input :on_sale, as: :boolean
     end
     f.actions
   end
@@ -25,6 +26,7 @@ ActiveAdmin.register Music do
         end
       end
       row :description
+      row :on_sale
       row :created_at
       row :updated_at
     end
@@ -38,6 +40,7 @@ ActiveAdmin.register Music do
     column :title
     column :genre
     column :price
+    column :on_sale
     column :file do |music|
       if music.file.attached?
         link_to music.file.filename.to_s, rails_blob_path(music.file, disposition: "attachment")
@@ -51,5 +54,6 @@ ActiveAdmin.register Music do
   filter :title
   filter :genre, as: :select, collection: Genre.all.map { |genre| [genre.name, genre.id] }
   filter :price
+  filter :on_sale, as: :boolean
   filter :created_at
 end

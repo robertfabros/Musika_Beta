@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   end
   resources :music, only: [:index, :show] do
     post 'add_to_cart', to: 'carts#add_to_cart', on: :member
+    collection do
+      get 'on_sale'
+      get 'newly_added'
+      get 'recently_updated'
+    end
   end
   resources :orders, only: [:index, :show, :new, :create] do
     member do
