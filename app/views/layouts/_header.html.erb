@@ -1,33 +1,44 @@
 <div id="wrapper">
     <div id="wrap-header">
     <header>
-      <div class="header-flex-container">
-        <nav>
-          <ul>
-            <li><%= link_to 'Home', root_path %></li>
-            <li><%= link_to 'Artists', artists_path %></li>
-            <li><%= link_to 'Genres', genres_path %></li>
-            <li><%= link_to 'Music', music_index_path %></li>
-            <li><%= link_to 'About', about_path %></li>
-            <li><%= link_to 'Contact', contact_path %></li>
-            <li><%= link_to 'Admin', admin_root_path %></li>
-            <% if user_signed_in? %>
+  <div class="header-flex-container">
+    <nav>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Artists', artists_path %></li>
+        <li><%= link_to 'Genres', genres_path %></li>
+        <li><%= link_to 'Music', music_index_path %></li>
+        <li><%= link_to 'About', about_path %></li>
+        <li><%= link_to 'Contact', contact_path %></li>
+        <li><%= link_to 'Admin', admin_root_path %></li>
+        <% if user_signed_in? %>
           <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Login', new_user_session_path %></li>
         <% end %>
-          </ul>
-        </nav>
-        <div class="cart-icon">
-    <%= link_to cart_path do %>
-      <%= image_tag 'cart_icon.png', alt: 'Cart' %>
-      (<%= current_user.cart.cart_items.count if user_signed_in? && current_user.cart.present? %>)
-    <% end %>
-  </div>
+      </ul>
+    </nav>
+    <div class="icon-container">
+      <div class="cart-icon">
+        <%= link_to cart_path do %>
+          <%= image_tag 'cart_icon.png', alt: 'Cart' %>
+          (<%= session[:cart]&.sum { |item| item["quantity"] } || 0 %>)
+        <% end %>
       </div>
-    </header>
+      <% if user_signed_in? %>
+        <div class="order-icon">
+          <%= link_to orders_path do %>
+            <%= image_tag 'order_icon.png', alt: 'Orders' %>
+            (<%= current_user.orders.count %>)
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</header>
+
     </div>
 <div id="topheader">
   <div class="logo">

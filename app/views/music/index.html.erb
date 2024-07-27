@@ -1,4 +1,13 @@
+<!-- app/views/music/index.html.erb -->
 <h2>All Songs</h2>
+
+<div class="filters">
+  <%= link_to 'All Songs', music_index_path %> |
+  <%= link_to 'On Sale', on_sale_music_index_path %> |
+  <%= link_to 'Newly Added', newly_added_music_index_path %> |
+  <%= link_to 'Recently Updated', recently_updated_music_index_path %>
+</div>
+
 <div class="music-list">
   <table>
     <thead>
@@ -24,8 +33,8 @@
             <% end %>
           </td>
           <td>
-  <%= button_to 'Add to Cart', add_to_cart_cart_path(music_id: music.id), method: :post, class: 'button', style: 'background-color: #5559de;' %>
-</td>
+            <%= button_to 'Add to Cart', add_to_cart_cart_path(music_id: music.id), method: :post, class: 'button', style: 'background-color: #5559de;' %>
+          </td>
         </tr>
       <% end %>
     </tbody>

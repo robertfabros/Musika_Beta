@@ -14,6 +14,21 @@ class MusicController < ApplicationController
     @breadcrumbs << content_tag(:li, @music.title, class: 'breadcrumb-item active', aria: { current: 'page' })
   end
 
+  def on_sale
+    @musics = Music.on_sale.page(params[:page])
+    render :index
+  end
+
+  def newly_added
+    @musics = Music.where("created_at >= ?", 3.days.ago).page(params[:page])
+    render :index
+  end
+
+  def recently_updated
+    @musics = Music.where("updated_at >= ? AND created_at < ?", 3.days.ago, 3.days.ago).page(params[:page])
+    render :index
+  end
+
   private
 
   def set_breadcrumbs

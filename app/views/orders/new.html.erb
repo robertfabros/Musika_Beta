@@ -1,0 +1,43 @@
+<!-- app/views/orders/new.html.erb -->
+<h2>CHECKOUT</h2>
+
+<%= form_with(model: @order, url: orders_path, method: :post, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :province_id, "Province" %><br>
+    <%= f.collection_select :province_id, @provinces, :id, :name, { selected: current_user.province_id }, { id: "order_province_id" } %>
+  </div>
+
+  <h3>Your Cart</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <tr>
+          <td><%= item.music.title %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(item.price) %></td>
+          <td><%= number_to_currency(item.price * item.quantity) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% subtotal = @cart_items.sum { |item| item.quantity * item.price } %>
+  <p id="subtotal" data-value="<%= subtotal %>">Subtotal: <%= number_to_currency(subtotal) %></p>
+  <p>GST: $<span id="gst">0.00</span></p>
+  <p>PST: $<span id="pst">0.00</span></p>
+  <p>QST: $<span id="qst">0.00</span></p>
+  <p>HST: $<span id="hst">0.00</span></p>
+  <p>Total Price: $<span id="total">0.00</span></p>
+
+  <%= f.submit "Place Order", class: "btn btn-primary" %>
+<% end %>
+
+<%= javascript_include_tag 'orders' %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'webhooks/stripe'
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   namespace :customers do
@@ -23,12 +24,28 @@ Rails.application.routes.draw do
   end
   resources :music, only: [:index, :show] do
     post 'add_to_cart', to: 'carts#add_to_cart', on: :member
+    collection do
+      get 'on_sale'
+      get 'newly_added'
+      get 'recently_updated'
+    end
   end
-  resources :orders, only: [:new, :create, :show]
+  resources :orders, only: [:index, :show, :new, :create] do
+    member do
+      post 'pay'
+      get 'success'
+      get 'cancel'
+    end
+  end
   resources :reviews
   resources :genres
   resources :comments
 
+  resources :provinces, only: [] do
+    member do
+      get 'taxes'
+    end
+  end
 
   # Using :slug instead of :id for Pages resource
   resources :pages, param: :slug, only: [:show]
